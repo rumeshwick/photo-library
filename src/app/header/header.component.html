@@ -1,0 +1,15 @@
+<mat-toolbar color="primary">
+  <span class="header-text">Photo Library</span>
+  <section class="button-wrapper">
+    <ng-container *ngFor="let module of modules">
+      <button
+        id="{{ module }}-btn"
+        mat-raised-button
+        [color]="selectedModule === module ? 'accent' : 'basic'"
+        (click)="toggleModule(module)"
+      >
+        {{ module | titlecase }}
+      </button>
+    </ng-container>
+  </section>
+</mat-toolbar>

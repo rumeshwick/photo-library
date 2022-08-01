@@ -1,0 +1,13 @@
+mat-toolbar {
+  justify-content: center;
+  .header-text {
+    position: fixed;
+    left: 16px;
+  }
+  .button-wrapper {
+    justify-content: space-evenly;
+    display: flex;
+    width: 100%;
+    margin: 0 130px;
+  }
+}
