@@ -7,6 +7,7 @@
         mat-raised-button
         [color]="selectedModule === module ? 'accent' : 'basic'"
         (click)="toggleModule(module)"
+        [routerLink]="module"
       >
         {{ module | titlecase }}
       </button>

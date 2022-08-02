@@ -5,6 +5,7 @@
   flex-wrap: wrap;
   justify-content: space-evenly;
   text-align: center;
+  overflow: auto;
   img {
     margin: 16px;
     cursor: pointer;
@@ -13,8 +14,5 @@
   }
   img:hover {
     transform: scale(1.1);
-  }
-  .favorite-image {
-    outline: 4px solid #ff4081;
   }
 }

@@ -21,12 +21,22 @@ export class PhotosComponent implements OnInit {
 
   constructor(private _snackBar: MatSnackBar) {
     this.favoriteImages = JSON.parse(
-      localStorage.getItem('favorit-images') || '[]'
+      sessionStorage.getItem('favorite-images') || '[]'
     );
+
+    this.images = JSON.parse(
+      sessionStorage.getItem('loaded-images') || '[]'
+    ).map((id: string) => ({
+      url: `https://picsum.photos/id/${id}/300/300`,
+      id,
+      isFavorite: this.favoriteImages.includes(id),
+    }));
   }
 
   ngOnInit(): void {
-    this.loadImages();
+    if (this.images.length === 0) {
+      this.loadImages();
+    }
   }
 
   loadImages() {
@@ -45,6 +55,10 @@ export class PhotosComponent implements OnInit {
               isFavorite: this.favoriteImages.includes(id),
             };
           })
+        );
+        sessionStorage.setItem(
+          'loaded-images',
+          JSON.stringify(this.images.map((row) => row.id))
         );
       })
       .catch((error) => {
@@ -68,6 +82,9 @@ export class PhotosComponent implements OnInit {
       });
       this.favoriteImages.push(image.id);
     }
-    localStorage.setItem('favorit-images', JSON.stringify(this.favoriteImages));
+    sessionStorage.setItem(
+      'favorite-images',
+      JSON.stringify(this.favoriteImages)
+    );
   }
 }
