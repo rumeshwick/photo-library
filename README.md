@@ -3,6 +3,10 @@
 This is a photo library that includes an infinite random photostream, with the ability
 to save photos to your “Favorites” library.
 
+# Live Demo
+
+See the live demo [here](https://photo-library-3b02f.web.app/).
+
 ## Requirements
 
 - Node v16.16.0
