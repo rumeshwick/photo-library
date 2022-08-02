@@ -5,8 +5,8 @@ to save photos to your “Favorites” library.
 
 ## Requirements
 
-Node v16.16.0
-Angular CLI v14.1.0
+- Node v16.16.0
+- Angular CLI v14.1.0
 
 ## Install dependencies
 
