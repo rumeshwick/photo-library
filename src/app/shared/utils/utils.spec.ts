@@ -20,7 +20,7 @@ describe('Utils', () => {
   it('should return random image list', async () => {
     const list = await getRandomImages(10);
     expect(list).toHaveSize(10);
-    expect(list[0]).toContain('https://i.picsum.photos');
+    expect(list[0].url).toContain('https://i.picsum.photos');
   });
 
   it('should return image id', () => {

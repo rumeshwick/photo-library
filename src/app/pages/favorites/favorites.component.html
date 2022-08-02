@@ -2,5 +2,7 @@
   <img
     *ngFor="let image of images"
     src="https://picsum.photos/id/{{ image }}/300/300"
+    [routerLink]="['/photos/', image]"
   />
+  <h2 *ngIf="images.length === 0">No images added to the favorite list</h2>
 </div>

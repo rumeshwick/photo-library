@@ -1,12 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { getImageId, getRandomImages } from 'src/app/shared/utils/utils';
-
-type Image = {
-  url: string;
-  id: string;
-  isFavorite: boolean;
-};
+import { StorageService } from 'src/app/shared/services/storage.service';
+import { getRandomImages } from 'src/app/shared/utils/utils';
+import { Image } from 'src/app/shared/models/Image';
 
 @Component({
   selector: 'app-photos',
@@ -19,18 +15,13 @@ export class PhotosComponent implements OnInit {
   favoriteImages: string[] = [];
   isLoading = false;
 
-  constructor(private _snackBar: MatSnackBar) {
-    this.favoriteImages = JSON.parse(
-      sessionStorage.getItem('favorite-images') || '[]'
-    );
+  constructor(
+    private _snackBar: MatSnackBar,
+    private storageService: StorageService
+  ) {
+    this.favoriteImages = this.storageService.getFavoriteImages();
 
-    this.images = JSON.parse(
-      sessionStorage.getItem('loaded-images') || '[]'
-    ).map((id: string) => ({
-      url: `https://picsum.photos/id/${id}/300/300`,
-      id,
-      isFavorite: this.favoriteImages.includes(id),
-    }));
+    this.images = this.storageService.getLoadedImages();
   }
 
   ngOnInit(): void {
@@ -46,20 +37,12 @@ export class PhotosComponent implements OnInit {
 
     getRandomImages(this.pageSize)
       .then((response) => {
-        this.images.push(
-          ...response.map((url) => {
-            const id = getImageId(url);
-            return {
-              url,
-              id,
-              isFavorite: this.favoriteImages.includes(id),
-            };
-          })
-        );
-        sessionStorage.setItem(
-          'loaded-images',
-          JSON.stringify(this.images.map((row) => row.id))
-        );
+        const images = response.map((row) => ({
+          ...row,
+          isFavorite: this.favoriteImages.includes(row.id),
+        }));
+        this.images.push(...images);
+        this.storageService.saveLoadedImages(this.images);
       })
       .catch((error) => {
         this._snackBar.open(error, '', {
@@ -82,9 +65,7 @@ export class PhotosComponent implements OnInit {
       });
       this.favoriteImages.push(image.id);
     }
-    sessionStorage.setItem(
-      'favorite-images',
-      JSON.stringify(this.favoriteImages)
-    );
+
+    this.storageService.saveFavoriteImages(this.favoriteImages);
   }
 }

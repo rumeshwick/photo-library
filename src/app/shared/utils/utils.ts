@@ -1,3 +1,5 @@
+import { Image } from '../models/Image';
+
 export const generateRandom = (min = 0, max = 100) => {
   let difference = max - min;
   let rand = Math.random();
@@ -6,7 +8,7 @@ export const generateRandom = (min = 0, max = 100) => {
   return rand;
 };
 
-export const getRandomImages = (size: number): Promise<string[]> => {
+export const getRandomImages = (size: number): Promise<Image[]> => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       Promise.all(
@@ -15,7 +17,13 @@ export const getRandomImages = (size: number): Promise<string[]> => {
           .map(() => fetch('https://picsum.photos/300/300'))
       )
         .then((response) => {
-          resolve(response.map((row) => row.url));
+          resolve(
+            response.map(({ url }) => ({
+              url,
+              id: getImageId(url),
+              isFavorite: false,
+            }))
+          );
         })
         .catch(() => {
           reject('Error while loading images');

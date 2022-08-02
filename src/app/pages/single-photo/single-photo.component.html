@@ -1,0 +1,21 @@
+<div class="wrapper">
+  <img src="https://picsum.photos/id/{{ imageId }}/600/600" />
+  <div class="button-wrapper">
+    <button
+      id="remove-btn"
+      mat-raised-button
+      color="accent"
+      (click)="removeFromfavorites()"
+    >
+      Remove from favorites
+    </button>
+    <button
+      id="back-btn"
+      mat-raised-button
+      color="basic"
+      [routerLink]="['/favorites']"
+    >
+      Back to favorites
+    </button>
+  </div>
+</div>

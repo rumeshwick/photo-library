@@ -1,0 +1,12 @@
+.wrapper {
+  padding: 16px;
+  height: calc(100% - 100px);
+  text-align: center;
+  overflow: auto;
+  button {
+    margin: 20px 40px;
+  }
+  img {
+    width: 100%;
+  }
+}

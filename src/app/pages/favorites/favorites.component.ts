@@ -1,16 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { StorageService } from 'src/app/shared/services/storage.service';
 
 @Component({
   selector: 'app-favorites',
   templateUrl: './favorites.component.html',
   styleUrls: ['./favorites.component.scss'],
 })
-export class FavoritesComponent implements OnInit {
+export class FavoritesComponent {
   images: string[] = [];
 
-  constructor() {
-    this.images = JSON.parse(sessionStorage.getItem('favorite-images') || '[]');
+  constructor(private storageService: StorageService) {
+    this.images = this.storageService.getFavoriteImages();
   }
-
-  ngOnInit(): void {}
 }

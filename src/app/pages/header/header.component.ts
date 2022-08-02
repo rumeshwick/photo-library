@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 
 @Component({
@@ -6,20 +6,17 @@ import { Location } from '@angular/common';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   modules = ['photos', 'favorites'];
 
   selectedModule = 'photos';
 
   constructor(private location: Location) {
-    this.modules.forEach((row) => {
-      if (this.location.path().includes(row)) {
-        this.selectedModule = row;
-      }
-    });
+    const currentPath = this.location.path();
+    if (currentPath.includes('favorites') || currentPath.includes('photos/')) {
+      this.selectedModule = 'favorites';
+    }
   }
-
-  ngOnInit(): void {}
 
   toggleModule(module: string) {
     this.selectedModule = module;

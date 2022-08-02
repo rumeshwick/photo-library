@@ -14,6 +14,13 @@ const routes: Routes = [
         (m) => m.FavoritesModule
       ),
   },
+  {
+    path: 'photos/:id',
+    loadChildren: () =>
+      import('./pages/single-photo/single-photo.module').then(
+        (m) => m.SinglePhotoModule
+      ),
+  },
   { path: '**', redirectTo: '/' },
 ];
 
