@@ -1,0 +1,23 @@
+.wrapper {
+  height: calc(100% - 100px);
+  padding: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  text-align: center;
+  img {
+    margin: 16px;
+    cursor: pointer;
+    transition: transform 0.2s; /* Animation */
+  }
+  img:hover {
+    transform: scale(1.1);
+  }
+  .favorite-image {
+    outline: 4px solid #ff4081;
+  }
+}
+
+.mat-badge-content {
+  font-family: "Material Icons";
+}

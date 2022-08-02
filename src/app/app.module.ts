@@ -4,7 +4,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HeaderModule } from './header/header.module';
+import { HeaderModule } from './pages/header/header.module';
+
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [AppComponent],
@@ -13,6 +15,7 @@ import { HeaderModule } from './header/header.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     HeaderModule,
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

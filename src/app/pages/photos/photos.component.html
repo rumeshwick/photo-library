@@ -1,0 +1,9 @@
+<div class="wrapper" infinite-scroll (onScrollEnd)="loadImages()">
+  <img
+    *ngFor="let image of images"
+    [src]="image.url"
+    [ngClass]="{ 'favorite-image': image.isFavorite }"
+    (click)="onClick(image)"
+  />
+  <app-loader [isLoading]="isLoading" (onLoadMore)="loadImages()"></app-loader>
+</div>

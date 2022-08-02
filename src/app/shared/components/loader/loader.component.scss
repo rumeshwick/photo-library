@@ -1,0 +1,14 @@
+.loader {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  margin: 100px;
+  margin-bottom: 200px;
+  .text {
+    position: absolute;
+    top: 40px;
+  }
+  .load-more-btn {
+    height: fit-content;
+  }
+}
